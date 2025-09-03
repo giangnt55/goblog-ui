@@ -1,13 +1,18 @@
 import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
 import LoginPage from '../features/auth/LoginPage';
-import { isAccessTokenValid } from '../lib/storage';
+import { useAuth } from '../hooks/useAuth';
 
 
 function ProtectedRoute() {
     const location = useLocation();
-    if (!isAccessTokenValid()) {
+    const { user, isLoading } = useAuth();
+
+    if (isLoading) return <div>Loading...</div>;
+
+    if (!user) {
         return <Navigate to="/login" replace state={{ from: location }} />;
     }
+
     return <Outlet />;
 }
 
@@ -21,7 +26,7 @@ export function AppRoutes() {
 
             {/* Protected */}
             <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Navigate to="/users" replace />} />
+                <Route path="/" element={<Navigate to="/" replace />} />
                 {/* <Route path="/users" element={<UsersPage />} /> */}
             </Route>
 

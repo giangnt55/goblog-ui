@@ -13,8 +13,8 @@ import {
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const location = useLocation() as any;
-  const from = location.state?.from?.pathname || '/';
+  const location = useLocation();
+  const from = (location.state?.from as Location | undefined)?.pathname ?? '/';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +25,9 @@ export default function LoginPage() {
     mutate(
       { email, password },
       {
-        onSuccess: () => navigate(from, { replace: true }),
+        onSuccess: () => {
+          navigate(from, { replace: true })
+        },
       }
     );
   }

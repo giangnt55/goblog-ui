@@ -49,10 +49,11 @@ export function parseJwt(token: string): JwtPayload | null {
 
 
 export function isAccessTokenValid(): boolean {
-  const token = getAccessToken();
-  const exp = localStorage.getItem(EXP_KEY);
-  if (!token || !exp) return false;
-  return Date.now() < Number(exp) * 1000;
+  // const token = getAccessToken();
+  // const exp = localStorage.getItem(EXP_KEY);
+  // if (!token || !exp) return false;
+  // return Date.now() < Number(exp) * 1000;
+  return !!getAccessToken();
 }
 
 

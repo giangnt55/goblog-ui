@@ -25,9 +25,24 @@ export function useLogout() {
 }
 
 export function useMe(enabled = true) {
-    return useQuery({
-        queryKey: ['me'],
-        queryFn: () => meFn().then(r => r.ok ? r.data : Promise.reject((r as any).error ?? 'Unknown error')),
-        enabled: enabled && isAccessTokenValid(),
-    });
+  const tokenValid = isAccessTokenValid();
+  console.log("[useMe] isAccessTokenValid:", tokenValid);
+
+  return useQuery({
+    queryKey: ['me'],
+    queryFn: async () => {
+      console.log("[useMe] fetching...");
+      const r = await meFn();
+      console.log("[useMe] raw result:", r);
+
+      if (r.ok) {
+        console.log("[useMe] resolved data:", r.data);
+        return r.data;
+      }
+
+      return Promise.reject(r.error ?? "Unknown error");
+    },
+    enabled: enabled && tokenValid,
+  });
 }
+
