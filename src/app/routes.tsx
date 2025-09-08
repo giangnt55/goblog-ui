@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
 import LoginPage from '../features/auth/LoginPage';
 import { useAuth } from '../hooks/useAuth';
+import LandingPage from '@/features/landing/LandingPage';
 
 
 function ProtectedRoute() {
@@ -21,12 +22,13 @@ export function AppRoutes() {
     return (
         <Routes>
             {/* Public */}
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
 
 
             {/* Protected */}
             <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Navigate to="/" replace />} />
+                {/* <Route path="/" element={<Navigate to="/" replace />} /> */}
                 {/* <Route path="/users" element={<UsersPage />} /> */}
             </Route>
 
