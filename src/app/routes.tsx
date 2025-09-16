@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
 import LoginPage from '../features/auth/LoginPage';
 import { useAuth } from '../hooks/useAuth';
-import LandingPage from '@/features/landing/LandingPage';
+import LandingPage from '@/features/landing/LandingDemoPage';
 
 
 function ProtectedRoute() {
