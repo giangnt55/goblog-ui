@@ -2,7 +2,9 @@ import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
 import LoginPage from '../features/auth/LoginPage';
 import { useAuth } from '../hooks/useAuth';
 import LandingPage from '@/features/landing/LandingDemoPage';
-import UiShowcasePage from '@/features/ui/UiShowcasePage';
+import { ButtonExamples } from '@/features/ui/ButtonUsage';
+import { CardExamples } from '@/features/ui/CardUsage';
+import TableExamples from '@/components/ui/table/TableUsage';
 
 
 function ProtectedRoute() {
@@ -25,7 +27,11 @@ export function AppRoutes() {
             {/* Public */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/ui-showcase" element={<UiShowcasePage  />} />
+           
+            {/*UI resource*/}
+            <Route path="/ui-button" element={<ButtonExamples  />} />
+            <Route path="/ui-card" element={<CardExamples  />} />
+            <Route path="/ui-table" element={<TableExamples  />} />
 
 
             {/* Protected */}

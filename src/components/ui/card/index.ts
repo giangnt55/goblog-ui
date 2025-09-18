@@ -1,4 +1,2 @@
-export * from "./card";
-export * from "./feature-card";
-export * from "./stat-card";
-export * from "./testimonial-card";
+export { Card, SimpleCard, HeaderCard, ActionCard } from './card';
+export type { CardProps } from './card';
